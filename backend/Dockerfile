@@ -20,3 +20,4 @@ COPY --from=builder /app/ecosystem.config.js ./ecosystem.config.js
 EXPOSE 3032
 
 CMD ["pm2-runtime", "ecosystem.config.js"] 
+RUN pm2 report
