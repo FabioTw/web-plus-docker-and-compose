@@ -6,9 +6,9 @@ RUN npm i
 
 COPY . .
 RUN npm run build
-RUN npm install pm2 -g 
 
 FROM node:16-alpine as production
+RUN npm install pm2 -g 
 WORKDIR /app
 COPY --from=builder /app/package*.json ./
 
