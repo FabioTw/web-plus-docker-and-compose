@@ -25,10 +25,21 @@ services:
     build: ./backend/.
     image: "kupi-backend"
     ports:
-      - "3032:3001"
+      - "4000:3001"
     restart: unless-stopped
     networks:
       - db-network
+      - frontend-network
+  frontend:
+    container_name: frontend
+    depends_on:
+      - backend
+    build: ./frontend/.
+    image: 'kupi-frontend'
+    ports:
+      - "8081:80"
+    restart: unless-stopped
+    networks:
       - frontend-network
 networks:
   db-network:

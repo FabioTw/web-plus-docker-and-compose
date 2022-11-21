@@ -1,4 +1,4 @@
-export const URL = "http://localhost:3032";
+export const URL = "http://api.kupidari.chervo.nomoredomains.icu";
 
 export const MINIMUM_PASSWORD_LENGTH = 3;
 export const MINIMUM_USERNAME_LENGTH = 3;
