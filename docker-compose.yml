@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  backend:
+    depends_on:
+      - postgres
+    build: ./backend/.
+    image: "kupi-backend"
+    ports:
+      - "3032:3001"
+    restart: unless-stopped
+    networks:
+      - db-network
+      - frontend-network
+  postgres:
+    image: "postgres:12.12"
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ${POSTGRES_PGDATA}
+    restart: unless-stopped
+    networks:
+      - db-network
+
+networks:
+  db-network:
+    driver: bridge
+    internal: true
+  frontend-network:
+    driver: bridge
