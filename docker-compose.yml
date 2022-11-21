@@ -1,8 +1,27 @@
 version: "3.9"
 services:
+  postgres:
+    container_name: postgres
+    image: "postgres:12.12"
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ${POSTGRES_PGDATA}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - db-network
   backend:
+    container_name: backend
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     build: ./backend/.
     image: "kupi-backend"
     ports:
@@ -11,18 +30,6 @@ services:
     networks:
       - db-network
       - frontend-network
-  postgres:
-    image: "postgres:12.12"
-    ports:
-      - "5432:5432"
-    env_file:
-      - ./backend/.env
-    volumes:
-      - ${POSTGRES_PGDATA}
-    restart: unless-stopped
-    networks:
-      - db-network
-
 networks:
   db-network:
     driver: bridge

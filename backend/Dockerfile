@@ -17,6 +17,6 @@ RUN npm i --omit=dev
 COPY --from=builder /app/dist ./dist/
 COPY --from=builder /app/ecosystem.config.js ./ecosystem.config.js
 
-EXPOSE 3032
+EXPOSE 3001
 
 CMD ["pm2-runtime", "start","ecosystem.config.js", "--env=production"] 
