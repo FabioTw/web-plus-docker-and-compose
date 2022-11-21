@@ -18,7 +18,7 @@ import constants from './constants/constants';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: constants().db.host,
+      host: '192.162.234.12',
       port: constants().db.port,
       username: constants().db.username,
       password: constants().db.password,
