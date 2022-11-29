@@ -4,7 +4,7 @@
 Здесь реализована работа с Docker и Docker-compose
 
 Для поднятия приложения используется команда **docker compose --env-file ./backend/.env up**
-Что-бы завершить работу приложения **dokcer compose down**
+Чтобы завершить работу приложения **dokcer compose down**
 Backend запускается на адресе http://localhost:4000
 Frontend запускается на адресе http://localhost:8081
 
